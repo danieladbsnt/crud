@@ -1,3 +1,4 @@
+<div class="root">
 <form (ngSubmit)="save()" [formGroup]="registerForm" class="form">
     <legend class="legend">Formulario de registro</legend>
 
@@ -39,9 +40,10 @@
 
 
     <div>
-        <button type="submit" class="btn btn-primary">Crear</button>
+        <button [disabled]="registerForm.invalid" type="submit" class="btn btn-primary">Crear</button>
     </div>
 </form>
-
+<app-table></app-table>
+</div>
 
 <h6>{{registerForm.valid}}</h6>

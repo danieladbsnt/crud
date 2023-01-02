@@ -10,12 +10,11 @@ import { User } from '../interfaces/user';
 export class FormComponent implements OnInit {
   
 //todo:
-//1- coger valor del form
-//2- añadir el valor del form al users array
-//3- pintar cada user en la pantalla
+//2- añadir el valor del form al users array con .push p.ej
+//3- pintar cada user en la pantalla (HACIENDO EL PASO 2)
 //4- añadir funcionalidad edit & delete
 countries: string[] = ['España', 'Rumanía', 'Austria']
-private users: User[] = [];
+formValues: string[] = [];
 
 //function validator pass
 mustmatch(pass: string, matchPass: string) {
@@ -36,7 +35,7 @@ registerForm: FormGroup = this.formBuilder.group({
       password: ['', Validators.required],
       confirmPass: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      suscribed: [true],
+      subscribed: [false],
       country: ['', Validators.required],
       city: ['', Validators.required]
 },
@@ -44,7 +43,7 @@ registerForm: FormGroup = this.formBuilder.group({
   validator: this.mustmatch('password', 'confirmPass')
 });
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
   }
@@ -53,12 +52,17 @@ invalidInput(campo: string) {
   return this.registerForm.controls[campo].errors && this.registerForm.controls[campo].touched;
 };
 
+
 save() {
   if (this.registerForm.invalid) {
     this.registerForm.markAllAsTouched();
   }
-
-  console.log(this.registerForm.value);
+//coger valor del form
+ this.formValues = this.registerForm.value;
+ 
+//resetear valor del form 
+  this.registerForm.reset();
 };
 
+ 
 }
