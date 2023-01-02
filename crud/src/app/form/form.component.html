@@ -1,0 +1,47 @@
+<form (ngSubmit)="save()" [formGroup]="registerForm" class="form">
+    <legend class="legend">Formulario de registro</legend>
+
+    <label>Nombre de usuario</label>
+    <input type="text" formControlName="username">
+    <span *ngIf="invalidInput('username')"
+          class="span-err form-text text-danger">Debe tener mínimo 3 letras</span>
+    
+    <label>Contraseña</label>
+    <input type="password" formControlName="password">
+    <span  *ngIf="invalidInput('password')"
+    class="span-err form-text text-danger">Introduce una contraseña</span>
+
+    <label>Confirmar contraseña</label>
+    <input type="password" formControlName="confirmPass">
+    <span  *ngIf="invalidInput('confirmPass')"
+    class="span-err form-text text-danger">Contraseñas no coinciden</span>
+
+    <label>Correo</label>
+    <input type="email" formControlName="email">
+    <span  *ngIf="invalidInput('email')"
+    class="span-err form-text text-danger">Introduce un formato válido</span>
+
+    <label><input type="checkbox"> Envíame promociones</label>
+
+    <label>País</label>
+    <select formControlName="country" name="" id="">
+        <option ></option>
+        <option *ngFor="let country of countries">{{country}}</option>
+    </select>
+    <span  *ngIf="invalidInput('country')"
+    class="span-err form-text text-danger">Selecciona un país</span>
+
+
+    <label>Ciudad</label>
+    <input type="text" formControlName="city">
+    <span  *ngIf="invalidInput('city')"
+    class="span-err form-text text-danger">Introduce una ciudad</span>
+
+
+    <div>
+        <button type="submit" class="btn btn-primary">Crear</button>
+    </div>
+</form>
+
+
+<h6>{{registerForm.valid}}</h6>

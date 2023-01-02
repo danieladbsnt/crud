@@ -1,0 +1,26 @@
+.table-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+table {
+    background-color: beige;
+}
+
+
+
+td {
+    width: 175px;
+    padding: 10px;
+    text-align: center;
+}
+
+tr{
+    border-bottom: 1px solid grey;
+}
+
+.material-symbols-outlined{
+    cursor: pointer;
+}
