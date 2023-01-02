@@ -1,8 +1,10 @@
 export interface User {
     username: string;
+    password: string;
+    confirmPass: string;
     email: string;
-    suscribed: boolean;
+    subscribed: boolean;
     country: string;
     city: string;
-    actions: string;
+    id?: number;
 }
