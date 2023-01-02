@@ -2,9 +2,3 @@
 html {
     background-color: lightgrey;
 }
-
-.root {
-    background-color: lightgrey;
-    display: grid;
-    grid-template-columns: 20% 80%;
-}
