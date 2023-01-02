@@ -8,35 +8,21 @@
         <td>Ciudad</td>
         <td>Actions</td>
     </tr>
-    <tr>
-        <td>Adelina Ramon</td>
-        <td>adelina.ramon@mail.com</td>
+    <tr *ngFor="let user of users">
+        <td>{{user.username}}</td>
+        <td>{{user.email}}</td>
         <td><span class="material-symbols-outlined">
             done
             </span></td>
-        <td>Portugal</td>
-        <td>Lisboa</td>
-        <td><span class="material-symbols-outlined">
+        <td>{{user.country}}</td>
+        <td>{{user.city}}</td>
+        <td><span (click)="edit()" class="material-symbols-outlined">
             edit
-            </span> <span class="material-symbols-outlined">
+            </span> <span (click)="delete()" class="material-symbols-outlined">
             delete
             </span></td>
     </tr>
     <!-- <tr>
-        <td>Adelina Ramon</td>
-        <td>adelina.ramon@mail.com</td>
-        <td><span class="material-symbols-outlined">
-            done
-            </span></td>
-        <td>Portugal</td>
-        <td>Lisboa</td>
-        <td><span class="material-symbols-outlined">
-            edit
-            </span> <span class="material-symbols-outlined">
-            delete
-            </span></td>
-    </tr>
-    <tr>
         <td>Adelina Ramon</td>
         <td>adelina.ramon@mail.com</td>
         <td><span class="material-symbols-outlined">
