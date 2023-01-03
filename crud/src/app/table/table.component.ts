@@ -1,53 +1,48 @@
-import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from '../interfaces/user';
-//import {MatTableModule} from '@angular/material/table';
+import { ServiceService } from '../services/service.service';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent {
+export class TableComponent implements OnInit{
 
-  @Input() formValues!: User[];
+@Output() data = new EventEmitter<any>();
 
-public users: User[] = [
-  {
-    username: 'aaa',
-    password: 'aaa',
-    confirmPass: 'aaa',
-    email: 'aaa@mail.com',
-    subscribed: false,
-    country: 'rumania',
-    city: 'medias',
-    id:1
-  },
-  {
-    username: 'bbb',
-    password: 'aaa',
-    confirmPass: 'aaa',
-    email: 'bbb@mail.com',
-    subscribed: false,
-    country: 'austria',
-    city: 'viena',
-    id: 2
-  }
-];
 
-  constructor() { 
-    console.log(this.formValues);
+ users: User[] = [];
+
+  constructor(private service: ServiceService) { 
     
   }
 
-edit() {
+
+  ngOnInit(): void {
+    this.service.getData()
+      .subscribe(users => {
+        this.users = users;
+        console.log(users);
+        
+      });
+  }
+
+update() {
   console.log('editando');
-  
+  // let body = {
+    
+  // }
+  // this.service.updateData(data, id)
+  // .subscribe(resp => {
+  //   console.log(resp);
+    
+  // })
 }
 
 delete() {
   console.log( 'borrando');
-
+  // this.service.deleteData(this.users.id) POR QUE NO VAAA
 }
 
 }

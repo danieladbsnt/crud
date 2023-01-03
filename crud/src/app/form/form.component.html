@@ -40,7 +40,7 @@
 
 
     <div>
-        <button [disabled]="registerForm.invalid" type="submit" class="btn btn-primary">Crear</button>
+        <button (click)="submitData()" [disabled]="registerForm.invalid" type="submit" class="btn btn-primary">Crear</button>
     </div>
 </form>
 <app-table></app-table>

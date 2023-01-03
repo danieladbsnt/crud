@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { User } from '../interfaces/user';
+import { ServiceService } from '../services/service.service';
 ;
 @Component({
   selector: 'app-form',
@@ -10,11 +10,10 @@ import { User } from '../interfaces/user';
 export class FormComponent implements OnInit {
   
 //todo:
-//2- añadir el valor del form al users array con .push p.ej
-//3- pintar cada user en la pantalla (HACIENDO EL PASO 2)
+
 //4- añadir funcionalidad edit & delete
 countries: string[] = ['España', 'Rumanía', 'Austria']
-formValues: string[] = [];
+id!: string;
 
 //function validator pass
 mustmatch(pass: string, matchPass: string) {
@@ -30,24 +29,27 @@ mustmatch(pass: string, matchPass: string) {
   }
 }
 
+//para validar los campos del registro
 registerForm: FormGroup = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
-      password: ['', Validators.required],
-      confirmPass: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      username: [, [Validators.required, Validators.minLength(3)]],
+      password: [, Validators.required],
+      confirmPass: [, Validators.required],
+      email: [, [Validators.required, Validators.email]],
       subscribed: [false],
-      country: ['', Validators.required],
-      city: ['', Validators.required]
+      country: [, Validators.required],
+      city: [, Validators.required]
 },
 {
   validator: this.mustmatch('password', 'confirmPass')
 });
 
-  constructor(private formBuilder: FormBuilder) {}
+constructor(private formBuilder: FormBuilder,
+            private service: ServiceService
+  ) {}
 
-  ngOnInit(): void {
+ngOnInit(): void {
   }
-
+//para que al tocar el campo y salir sin rellenarlo de error.
 invalidInput(campo: string) {
   return this.registerForm.controls[campo].errors && this.registerForm.controls[campo].touched;
 };
@@ -57,12 +59,20 @@ save() {
   if (this.registerForm.invalid) {
     this.registerForm.markAllAsTouched();
   }
-//coger valor del form
- this.formValues = this.registerForm.value;
- 
+//ver valor del form
+ console.log(this.registerForm.value);
 //resetear valor del form 
   this.registerForm.reset();
 };
 
- 
+submitData() {
+
+  this.service.postData(this.registerForm.value)
+  .subscribe(resp => {
+    console.log(resp);
+    
+  })
+};
+
+
 }
