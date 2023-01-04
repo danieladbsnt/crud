@@ -16,9 +16,9 @@
             </span></td>
         <td>{{user.country}}</td>
         <td>{{user.city}}</td>
-        <td><span (click)="update()" class="material-symbols-outlined">
+        <td><span (click)="update(user, user.id!)" class="material-symbols-outlined">
             edit
-            </span> <span (click)="delete()" class="material-symbols-outlined">
+            </span> <span (click)="delete(user.id!)" class="material-symbols-outlined">
             delete
             </span></td>
     </tr>
