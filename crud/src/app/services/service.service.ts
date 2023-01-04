@@ -24,11 +24,11 @@ export class ServiceService {
     return this.http.post<User[]>('http://localhost:3000/users', data)
    }
 
-   updateData(data: any, id: string) {
+   updateData(data: any, id: number) {
     return this.http.put<User[]>(`http://localhost:3000/users/${id}`, data)
    }
 
-   deleteData(id: string){
-    return this.http.delete<any>(`http://localhost:3000/users/${id}`)
+   deleteData(id: number){
+    return this.http.delete<User>(`http://localhost:3000/users/${id}`)
    }
 }
