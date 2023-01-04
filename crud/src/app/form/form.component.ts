@@ -8,12 +8,9 @@ import { ServiceService } from '../services/service.service';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
-  
-//todo:
-
-//4- añadir funcionalidad edit & delete
+ 
 countries: string[] = ['España', 'Rumanía', 'Austria']
-id!: string;
+id!: number;
 
 //function validator pass
 mustmatch(pass: string, matchPass: string) {
@@ -54,7 +51,6 @@ invalidInput(campo: string) {
   return this.registerForm.controls[campo].errors && this.registerForm.controls[campo].touched;
 };
 
-
 save() {
   if (this.registerForm.invalid) {
     this.registerForm.markAllAsTouched();
@@ -66,7 +62,7 @@ save() {
 };
 
 submitData() {
-
+//mandar datos del form a BD
   this.service.postData(this.registerForm.value)
   .subscribe(resp => {
     console.log(resp);
@@ -74,5 +70,9 @@ submitData() {
   })
 };
 
-
 }
+/*
+Una vez está la info del user q se quiere editar en el form, se edita y al 
+darle al btn de "crear" se tiene que actualizar la info de la BD y pintar la
+nueva info en la table
+*/
