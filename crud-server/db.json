@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "username": "Wanda",
+      "password": "www",
+      "confirmPass": "www",
+      "email": "wanda@mail.com",
+      "subscribed": false,
+      "country": "Rumanía",
+      "city": "sibiu",
+      "id": 3
+    },
+    {
+      "username": "Black Widow",
+      "password": "aaa",
+      "confirmPass": "aaa",
+      "email": "black.widow@mail.com",
+      "subscribed": false,
+      "country": "España",
+      "city": "valencia",
+      "id": 4
+    },
+    {
+      "username": "Thor",
+      "password": "qqq",
+      "confirmPass": "qqq",
+      "email": "thor@mail.com",
+      "subscribed": false,
+      "country": "España",
+      "city": "Madrid",
+      "id": 5
+    },
+    {
+      "username": "Tony Stark",
+      "password": "qqq",
+      "confirmPass": "qqq",
+      "email": "tony.stark@mail.com",
+      "subscribed": false,
+      "country": "Austria",
+      "city": "Viena",
+      "id": 6
+    }
+  ]
+}
