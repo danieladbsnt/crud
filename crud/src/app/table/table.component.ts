@@ -11,7 +11,7 @@ export class TableComponent implements OnInit{
 
 //@Output() data = new EventEmitter<any>();
 
- users: User[] = [];
+ users!: User[];
 
   constructor(private service: ServiceService) { 
   }
@@ -36,9 +36,13 @@ update(data:any, id: number) {
 }
 
 delete(id: number) {
-  //borra pero no se pinta en la tabla al menos que refresques.
+  let userDeleted = this.users.findIndex((user)=> user.id === id)
+  if(userDeleted != -1) {
+    this.users.splice(userDeleted, 1)
+  }
   this.service.deleteData(id)
-    .subscribe(resp => {}) 
+    .subscribe(resp => {
+      console.log(resp); 
+    }) 
 }
-
 }
