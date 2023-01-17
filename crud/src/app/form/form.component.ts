@@ -9,7 +9,7 @@ import { ServiceService } from '../services/service.service';
 })
 export class FormComponent implements OnInit {
  
-countries: string[] = ['España', 'Rumanía', 'Austria']
+countries: any;
 id!: number;
 
 //function validator pass
@@ -45,6 +45,9 @@ constructor(private formBuilder: FormBuilder,
   ) {}
 
 ngOnInit(): void {
+  this.service.getCountries().subscribe(
+    resp => this.countries = resp
+  )
   }
 //para que al tocar el campo y salir sin rellenarlo de error.
 invalidInput(campo: string) {
@@ -66,7 +69,7 @@ submitData() {
   this.service.postData(this.registerForm.value)
   .subscribe(resp => {
     console.log(resp);
-    
+
   })
 };
 
