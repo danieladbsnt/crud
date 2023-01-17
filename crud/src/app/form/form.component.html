@@ -22,7 +22,7 @@
     <span  *ngIf="invalidInput('email')"
     class="span-err form-text text-danger">Introduce un formato válido</span>
 
-    <label><input type="checkbox"> Envíame promociones</label>
+    <label><input [(ngModel)]="isChecked" formControlName="subscribed" type="checkbox"> Envíame promociones</label>
 
     <label>País</label>
     <select formControlName="country" name="" id="">

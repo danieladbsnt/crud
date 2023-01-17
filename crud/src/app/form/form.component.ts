@@ -11,6 +11,7 @@ export class FormComponent implements OnInit {
  
 countries: any;
 id!: number;
+isChecked: boolean = false;
 
 //function validator pass
 mustmatch(pass: string, matchPass: string) {
