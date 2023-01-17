@@ -7,14 +7,9 @@ import { User } from '../interfaces/user';
   providedIn: 'root'
 })
 export class ServiceService {
+private countryApi: string = 'https://restcountries.com/v3.1/all?fields=name';
 
   constructor(private http: HttpClient) { }
- 
-// data: BehaviorSubject<any> = new BehaviorSubject<any>(null)
-
-//   setData(data:any) {
-//     this.data.next(data)
-//   }
 
    getData() {
     return this.http.get<User[]>('http://localhost:3000/users')
@@ -29,6 +24,11 @@ export class ServiceService {
    }
 
    deleteData(id: number){
-    return this.http.delete<User>(`http://localhost:3000/users/${id}`)
+    return this.http.delete<User[]>(`http://localhost:3000/users/${id}`)
+   }
+
+//obtener países
+   getCountries() {
+    return this.http.get(this.countryApi)
    }
 }
