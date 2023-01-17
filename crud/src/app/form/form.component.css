@@ -28,3 +28,8 @@ label{
     display: grid;
     grid-template-columns: 20% 80%;
 }
+
+select{
+    max-width:63%;
+    text-overflow: ellipsis;
+}
