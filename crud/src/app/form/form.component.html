@@ -26,8 +26,8 @@
 
     <label>País</label>
     <select formControlName="country" name="" id="">
-        <option ></option>
-        <option *ngFor="let country of countries">{{country}}</option>
+        <option></option>
+        <option *ngFor="let country of countries">{{country.name.common}}</option>
     </select>
     <span  *ngIf="invalidInput('country')"
     class="span-err form-text text-danger">Selecciona un país</span>
