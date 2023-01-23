@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from '../interfaces/user';
 import { ServiceService } from '../services/service.service';
 ;
 @Component({
@@ -11,7 +12,10 @@ export class FormComponent implements OnInit {
  
 countries: any;
 id!: number;
-isChecked: boolean = false;
+
+editedUser!: any;
+updatedForm!: any;
+editedUserId!: number;
 
 //function validator pass
 mustmatch(pass: string, matchPass: string) {
@@ -33,7 +37,7 @@ registerForm: FormGroup = this.formBuilder.group({
       password: [, Validators.required],
       confirmPass: [, Validators.required],
       email: [, [Validators.required, Validators.email]],
-      subscribed: [false],
+      subscribed: [true],
       country: [, Validators.required],
       city: [, Validators.required]
 },
@@ -54,6 +58,34 @@ ngOnInit(): void {
 invalidInput(campo: string) {
   return this.registerForm.controls[campo].errors && this.registerForm.controls[campo].touched;
 };
+
+userEdited(editedUser:any){
+  console.log('editedUser', editedUser.id);
+  console.log(this.registerForm.setValue = editedUser)
+  this.editedUserId = editedUser.id
+  
+  this.editedUser = this.registerForm.patchValue({
+    username: editedUser.username,
+    password: editedUser.password,
+    confirmPass: editedUser.confirmPass,
+    email: editedUser.email,
+    subscribed: editedUser.subscribed,
+    country: editedUser.country,
+    city: editedUser.city
+  })
+  console.log(editedUser);
+  
+}
+
+updateUser(editedUser:any,editedUserId: number) {
+  console.log(editedUser);
+  
+  this.service.updateData(this.editedUser,this.editedUserId)
+  .subscribe(editedUser => {
+    console.log(editedUser);
+  
+  })
+}
 
 save() {
   if (this.registerForm.invalid) {
