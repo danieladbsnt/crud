@@ -8,8 +8,8 @@ import { ServiceService } from '../services/service.service';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit{
-
-//@Output() data = new EventEmitter<any>();
+@Input() subscribed!: boolean;
+@Output() userEdited: EventEmitter<User> = new EventEmitter();
 
  users!: User[];
 
@@ -25,21 +25,22 @@ export class TableComponent implements OnInit{
   }
 //cuando le de click al lapiz para editar, se tiene que poner la info
 //del user que se toca en el form.
-update(data:any, id: number) {
-  console.log('editando');
-  
-  this.service.updateData(data, id)
-  .subscribe(resp => {
-    console.log(resp);
-  
-  })
+update( id: number) {
+  let editedUser = this.users.find((user) => user.id === id)
+  this.userEdited.emit(editedUser)
+
+  //console.log('editando', this.userEdited);
+
 }
 
 delete(id: number) {
   let userDeleted = this.users.findIndex((user)=> user.id === id)
+  console.log('borrando', userDeleted);
+  
   if(userDeleted != -1) {
     this.users.splice(userDeleted, 1)
   }
+
   this.service.deleteData(id)
     .subscribe(resp => {
       console.log(resp); 
