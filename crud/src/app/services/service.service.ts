@@ -20,7 +20,7 @@ private countryApi: string = 'https://restcountries.com/v3.1/all?fields=name';
    }
 
    updateData(data: any, id: number) {
-    return this.http.put<User[]>(`http://localhost:3000/users/${id}`, data)
+    return this.http.patch<User[]>(`http://localhost:3000/users/${id}`, data)
    }
 
    deleteData(id: number){
