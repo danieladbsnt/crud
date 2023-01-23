@@ -22,10 +22,10 @@
     <span  *ngIf="invalidInput('email')"
     class="span-err form-text text-danger">Introduce un formato válido</span>
 
-    <label><input [(ngModel)]="isChecked" formControlName="subscribed" type="checkbox"> Envíame promociones</label>
+    <label><input formControlName="subscribed" type="checkbox"> Envíame promociones</label>
 
     <label>País</label>
-    <select formControlName="country" name="" id="">
+    <select formControlName="country">
         <option></option>
         <option *ngFor="let country of countries">{{country.name.common}}</option>
     </select>
@@ -42,8 +42,11 @@
     <div>
         <button (click)="submitData()" [disabled]="registerForm.invalid" type="submit" class="btn btn-primary">Crear</button>
     </div>
+    <div>
+        <button (click)="updateUser(updatedForm, id)" [disabled]="registerForm.invalid" type="submit" class="btn btn-primary">Actualizar</button>
+    </div>
 </form>
-<app-table></app-table>
+<app-table (userEdited)="userEdited($event)"></app-table>
 </div>
 
 <h6>{{registerForm.valid}}</h6>
