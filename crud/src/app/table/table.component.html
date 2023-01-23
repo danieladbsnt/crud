@@ -11,12 +11,12 @@
     <tr *ngFor="let user of users">
         <td>{{user.username}}</td>
         <td>{{user.email}}</td>
-        <td><span class="material-symbols-outlined">
+        <td><span *ngIf="!subscribed" class="material-symbols-outlined">
             done
             </span></td>
         <td>{{user.country}}</td>
         <td>{{user.city}}</td>
-        <td><span (click)="update(user, user.id!)" class="material-symbols-outlined">
+        <td><span (click)="update(user.id!)" class="material-symbols-outlined">
             edit
             </span> <span (click)="delete(user.id!)" class="material-symbols-outlined">
             delete
