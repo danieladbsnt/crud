@@ -43,7 +43,7 @@
         <button (click)="submitData()" [disabled]="registerForm.invalid" type="submit" class="btn btn-primary">Crear</button>
     </div>
     <div>
-        <button (click)="updateUser(updatedForm, id)" [disabled]="registerForm.invalid" type="submit" class="btn btn-primary">Actualizar</button>
+        <button (click)="updateUser()" [disabled]="registerForm.invalid" type="submit" class="btn btn-primary">Actualizar</button>
     </div>
 </form>
 <app-table (userEdited)="userEdited($event)"></app-table>
