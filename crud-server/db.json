@@ -41,24 +41,34 @@
       "id": 4
     },
     {
-      "username": "aaaa",
-      "password": "aaa",
-      "confirmPass": "aaa",
-      "email": "aa@mail.com",
+      "username": "Hulk",
+      "password": "smash",
+      "confirmPass": "smash",
+      "email": "hulk@mail.com",
       "subscribed": false,
-      "country": "Malaysia",
-      "city": "aaa",
+      "country": "Eritrea",
+      "city": "Smash",
       "id": 5
     },
     {
-      "username": "abc",
+      "username": "Spiderman",
+      "password": "sss",
+      "confirmPass": "sss",
+      "email": "spiderman@mail.com",
+      "subscribed": true,
+      "country": "Nepal",
+      "city": "sh",
+      "id": 6
+    },
+    {
+      "username": "AntMan",
       "password": "aaa",
       "confirmPass": "aaa",
-      "email": "aa@mail.com",
-      "subscribed": false,
-      "country": "Malaysia",
+      "email": "antman@mail.com",
+      "subscribed": true,
+      "country": "Tonga",
       "city": "aaa",
-      "id": 6
+      "id": 7
     }
   ]
 }
