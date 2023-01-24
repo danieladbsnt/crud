@@ -12,9 +12,9 @@ export class FormComponent implements OnInit {
  
 countries: any;
 id!: number;
-
-//editedUser!: any;
-updatedForm!: User;
+editedUser!: any;
+// updateUser!: any;
+// addUser!: any;
 editedUserId!: number;
 
 //function para validar pass
@@ -74,10 +74,13 @@ userEdited(editedUser:any){
   })
 }
 
-updateUser() {
+update() {
   this.service.updateData(this.registerForm.value, this.editedUserId)
   .subscribe(editedUser => {
     console.log(editedUser);
+    //this.updateUser = editedUser
+// TODO: mandar editedUser a table para poder pintarlo
+    
   })
 }
 
@@ -96,6 +99,8 @@ submitData() {
   this.service.postData(this.registerForm.value)
   .subscribe(resp => {
     console.log(resp);
+    //this.addUser = resp;
+// TODO: mandar addUser a table para poder pintarlo
   })
 };
 
