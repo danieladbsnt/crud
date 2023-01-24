@@ -13,11 +13,11 @@ export class FormComponent implements OnInit {
 countries: any;
 id!: number;
 
-editedUser!: any;
-updatedForm!: any;
+//editedUser!: any;
+updatedForm!: User;
 editedUserId!: number;
 
-//function validator pass
+//function para validar pass
 mustmatch(pass: string, matchPass: string) {
   return (formGroup: FormGroup) => {
     const control = formGroup.controls[pass];
@@ -60,11 +60,10 @@ invalidInput(campo: string) {
 };
 
 userEdited(editedUser:any){
-  console.log('editedUser', editedUser.id);
-  console.log(this.registerForm.setValue = editedUser)
+  //console.log('editedUser', editedUser.id);
   this.editedUserId = editedUser.id
-  
-  this.editedUser = this.registerForm.patchValue({
+//para poner los datos del usuario seleccionado en el form
+   this.registerForm.patchValue({
     username: editedUser.username,
     password: editedUser.password,
     confirmPass: editedUser.confirmPass,
@@ -73,17 +72,12 @@ userEdited(editedUser:any){
     country: editedUser.country,
     city: editedUser.city
   })
-  console.log(editedUser);
-  
 }
 
-updateUser(editedUser:any,editedUserId: number) {
-  console.log(editedUser);
-  
-  this.service.updateData(this.editedUser,this.editedUserId)
+updateUser() {
+  this.service.updateData(this.registerForm.value, this.editedUserId)
   .subscribe(editedUser => {
     console.log(editedUser);
-  
   })
 }
 
@@ -102,13 +96,7 @@ submitData() {
   this.service.postData(this.registerForm.value)
   .subscribe(resp => {
     console.log(resp);
-
   })
 };
 
 }
-/*
-Una vez está la info del user q se quiere editar en el form, se edita y al 
-darle al btn de "crear" se tiene que actualizar la info de la BD y pintar la
-nueva info en la table
-*/
