@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { User } from '../interfaces/user';
 import { ServiceService } from '../services/service.service';
 
@@ -8,13 +8,12 @@ import { ServiceService } from '../services/service.service';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit{
-@Input() subscribed!: boolean;
+//@Input() subscribed!: boolean;
 @Output() userEdited: EventEmitter<User> = new EventEmitter();
-
- users!: User[];
-
-  constructor(private service: ServiceService) { 
-  }
+// @Input() userAdded: any;
+// @Input() userUpdated: any;
+users!: User[];
+  constructor(private service: ServiceService) { }
 
   ngOnInit(): void {
     this.service.getData()
@@ -23,14 +22,11 @@ export class TableComponent implements OnInit{
         console.log(users);
       });
   }
-//cuando le de click al lapiz para editar, se tiene que poner la info
-//del user que se toca en el form.
+
+//mandar al form el user que ha sido clickado
 update( id: number) {
   let editedUser = this.users.find((user) => user.id === id)
   this.userEdited.emit(editedUser)
-
-  //console.log('editando', this.userEdited);
-
 }
 
 delete(id: number) {
@@ -46,4 +42,16 @@ delete(id: number) {
       console.log(resp); 
     }) 
 }
+
+// updateUser() {
+//   console.log('updateUSER table');
+  
+//   this.users.push(this.userAdded);
+// }
+
+// addUser() {
+//   console.log('ADDuser table');
+//   this.users.push(this.userUpdated)
+// }
+
 }
