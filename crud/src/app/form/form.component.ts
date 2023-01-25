@@ -9,7 +9,6 @@ import { ServiceService } from '../services/service.service';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
- 
 countries: any;
 editedUser!: any;
 editedUserId!: number;
@@ -77,7 +76,6 @@ update() {
     console.log(editedUser);
     //this.updateUser = editedUser
 // TODO: mandar editedUser a table para poder pintarlo
-    
   })
 }
 
@@ -87,8 +85,7 @@ save() {
   }
 //ver valor del form
  console.log(this.registerForm.value);
-//resetear valor del form 
-  this.registerForm.reset();
+
 };
 
 submitData() {
@@ -99,6 +96,7 @@ submitData() {
     //this.addUser = resp;
 // TODO: mandar addUser a table para poder pintarlo
   })
+  //resetear valor del form 
+  this.registerForm.reset();
 };
-
 }
