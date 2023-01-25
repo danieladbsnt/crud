@@ -7,7 +7,7 @@
       "email": "wanda@mail.com",
       "subscribed": true,
       "country": "Slovenia",
-      "city": "www",
+      "city": "Liubliana",
       "id": 1
     },
     {
@@ -15,7 +15,7 @@
       "password": "qqq",
       "confirmPass": "qqq",
       "email": "ironman@mail.com",
-      "subscribed": false,
+      "subscribed": true,
       "country": "United Kingdom",
       "city": "Brighton",
       "id": 2
@@ -57,7 +57,7 @@
       "email": "spiderman@mail.com",
       "subscribed": true,
       "country": "Nepal",
-      "city": "sh",
+      "city": "Katmandú",
       "id": 6
     },
     {
@@ -67,8 +67,108 @@
       "email": "antman@mail.com",
       "subscribed": true,
       "country": "Tonga",
-      "city": "aaa",
+      "city": "Nukualofa",
       "id": 7
+    },
+    {
+      "username": "Vision",
+      "password": "vvv",
+      "confirmPass": "vvv",
+      "email": "vision@mail.com",
+      "subscribed": false,
+      "country": "Ivory Coast",
+      "city": "Yamusukro",
+      "id": 8
+    },
+    {
+      "username": "Capitan America",
+      "password": "aaa",
+      "confirmPass": "aaa",
+      "email": "capi@mail.com",
+      "subscribed": true,
+      "country": "United States",
+      "city": "Washington",
+      "id": 9
+    },
+    {
+      "username": "Black Panther",
+      "password": "sss",
+      "confirmPass": "sss",
+      "email": "bpanther@mail.com",
+      "subscribed": false,
+      "country": "Rwanda",
+      "city": "Wakanda",
+      "id": 10
+    },
+    {
+      "username": "Hawkeye",
+      "password": "aaa",
+      "confirmPass": "aaa",
+      "email": "hawkeye@mail.com",
+      "subscribed": true,
+      "country": "Switzerland",
+      "city": "Berna",
+      "id": 11
+    },
+    {
+      "username": "Winter Soldier",
+      "password": "aaa",
+      "confirmPass": "aaa",
+      "email": "winters@mail.com",
+      "subscribed": true,
+      "country": "Romania",
+      "city": "Cluj",
+      "id": 12
+    },
+    {
+      "username": "Doctor Strange",
+      "password": "aaa",
+      "confirmPass": "aaa",
+      "email": "dstrange@mail.com",
+      "subscribed": false,
+      "country": "United Kingdom",
+      "city": "London",
+      "id": 13
+    },
+    {
+      "username": "Groot",
+      "password": "aaa",
+      "confirmPass": "aaa",
+      "email": "groot@mail.com",
+      "subscribed": false,
+      "country": "Greenland",
+      "city": "Groot",
+      "id": 14
+    },
+    {
+      "username": "Falcon",
+      "password": "aaa",
+      "confirmPass": "aaa",
+      "email": "falcon@mail.com",
+      "subscribed": true,
+      "country": "American Samoa",
+      "city": "Pago Pago",
+      "id": 15
+    },
+    {
+      "username": "War Machine",
+      "password": "aaa",
+      "confirmPass": "aaa",
+      "email": "warmach@mail.com",
+      "subscribed": false,
+      "country": "Christmas Island",
+      "city": "Hoho",
+      "id": 16
+    },
+    {
+      "username": "Loki",
+      "password": "aaa",
+      "confirmPass": "aaa",
+      "email": "loki@mail.com",
+      "subscribed": true,
+      "country": "Norfolk Island",
+      "city": "Asgard",
+      "id": 17
     }
   ]
 }
