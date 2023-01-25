@@ -11,7 +11,7 @@
     <tr *ngFor="let user of users">
         <td>{{user.username}}</td>
         <td>{{user.email}}</td>
-        <td><span class="material-symbols-outlined">
+        <td><span *ngIf="user.subscribed" class="material-symbols-outlined">
             done
             </span></td>
         <td>{{user.country}}</td>
