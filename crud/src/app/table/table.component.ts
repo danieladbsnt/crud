@@ -10,8 +10,7 @@ import { ServiceService } from '../services/service.service';
 export class TableComponent implements OnInit{
 //@Input() subscribed!: boolean;
 @Output() userEdited: EventEmitter<User> = new EventEmitter();
-// @Input() userAdded: any;
-// @Input() userUpdated: any;
+
 users!: User[];
   constructor(private service: ServiceService) { }
 
@@ -22,7 +21,6 @@ users!: User[];
         console.log(users);
       });
   }
-
 //mandar al form el user que ha sido clickado
 update( id: number) {
   let editedUser = this.users.find((user) => user.id === id)
@@ -42,16 +40,4 @@ delete(id: number) {
       console.log(resp); 
     }) 
 }
-
-// updateUser() {
-//   console.log('updateUSER table');
-  
-//   this.users.push(this.userAdded);
-// }
-
-// addUser() {
-//   console.log('ADDuser table');
-//   this.users.push(this.userUpdated)
-// }
-
 }
