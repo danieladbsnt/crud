@@ -11,10 +11,7 @@ import { ServiceService } from '../services/service.service';
 export class FormComponent implements OnInit {
  
 countries: any;
-id!: number;
 editedUser!: any;
-// updateUser!: any;
-// addUser!: any;
 editedUserId!: number;
 
 //function para validar pass
@@ -37,7 +34,7 @@ registerForm: FormGroup = this.formBuilder.group({
       password: [, Validators.required],
       confirmPass: [, Validators.required],
       email: [, [Validators.required, Validators.email]],
-      subscribed: [true],
+      subscribed: [false],
       country: [, Validators.required],
       city: [, Validators.required]
 },
