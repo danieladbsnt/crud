@@ -8,7 +8,7 @@ import { ServiceService } from '../services/service.service';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit{
-//@Input() subscribed!: boolean;
+@Input() userss!: any;
 @Output() userEdited: EventEmitter<User> = new EventEmitter();
 
 users!: User[];
@@ -21,6 +21,14 @@ users!: User[];
         console.log(users);
       });
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
+    //Add '${implements OnChanges}' to the class.
+    console.log(this.users);
+    this.users.push(this.userss)
+  }
+
 //mandar al form el user que ha sido clickado
 update( id: number) {
   let editedUser = this.users.find((user) => user.id === id)
