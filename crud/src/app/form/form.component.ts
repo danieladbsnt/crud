@@ -12,6 +12,7 @@ export class FormComponent implements OnInit {
 countries: any;
 editedUser!: any;
 editedUserId!: number;
+users!: User[];
 
 //function para validar pass
 mustmatch(pass: string, matchPass: string) {
@@ -56,7 +57,6 @@ invalidInput(campo: string) {
 };
 
 userEdited(editedUser:any){
-  //console.log('editedUser', editedUser.id);
   this.editedUserId = editedUser.id
 //para poner los datos del usuario seleccionado en el form
    this.registerForm.patchValue({
@@ -73,9 +73,9 @@ userEdited(editedUser:any){
 update() {
   this.service.updateData(this.registerForm.value, this.editedUserId)
   .subscribe(editedUser => {
-    console.log(editedUser);
-    //this.updateUser = editedUser
-// TODO: mandar editedUser a table para poder pintarlo
+    this.users = editedUser
+    console.log(this.users);
+    
   })
 }
 
@@ -92,9 +92,8 @@ submitData() {
 //mandar datos del form a BD
   this.service.postData(this.registerForm.value)
   .subscribe(resp => {
-    console.log(resp);
-    //this.addUser = resp;
-// TODO: mandar addUser a table para poder pintarlo
+     this.users = resp
+    console.log(this.users);
   })
   //resetear valor del form 
   this.registerForm.reset();
