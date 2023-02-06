@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 import { User } from '../interfaces/user';
 import { ServiceService } from '../services/service.service';
 ;
@@ -13,6 +14,8 @@ countries: any;
 editedUser!: any;
 editedUserId!: number;
 users!: User[];
+
+private _unsuscribe$ = new Subject<boolean>();
 
 //function para validar pass
 mustmatch(pass: string, matchPass: string) {
@@ -47,9 +50,9 @@ constructor(private formBuilder: FormBuilder,
   ) {}
 
 ngOnInit(): void {
-  this.service.getCountries().subscribe(
-    resp => this.countries = resp
-  )
+  this.service.getCountries().pipe(takeUntil(this._unsuscribe$)).subscribe({
+    next: resp => this.countries = resp
+  })
   }
 //para que al tocar el campo y salir sin rellenarlo de error.
 invalidInput(campo: string) {
@@ -98,4 +101,10 @@ submitData() {
   //resetear valor del form 
   this.registerForm.reset();
 };
+
+
+ngOnDestroy(): void {
+  this._unsuscribe$.next(true)
+  this._unsuscribe$.complete();
+}
 }
