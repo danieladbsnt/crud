@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import { User } from '../interfaces/user';
 import { ServiceService } from '../services/service.service';
 
@@ -12,10 +13,13 @@ export class TableComponent implements OnInit{
 @Output() userEdited: EventEmitter<User> = new EventEmitter();
 
 users!: User[];
+
+private _unsuscribe$ = new Subject<boolean>();
+
   constructor(private service: ServiceService) { }
 
   ngOnInit(): void {
-    this.service.getData()
+    this.service.getData().pipe(takeUntil(this._unsuscribe$))
       .subscribe(users => {
         this.users = users;
         console.log(users);
@@ -47,5 +51,10 @@ delete(id: number) {
     .subscribe(resp => {
       console.log(resp); 
     }) 
+}
+
+ngOnDestroy(): void {
+  this._unsuscribe$.next(true)
+  this._unsuscribe$.complete();
 }
 }
