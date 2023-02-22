@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subject, takeUntil } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subject, switchMap, takeUntil } from 'rxjs';
 import { User } from '../interfaces/user';
 import { ServiceService } from '../services/service.service';
-;
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -11,7 +11,6 @@ import { ServiceService } from '../services/service.service';
 })
 export class FormComponent implements OnInit {
 countries: any;
-editedUser!: any;
 editedUserId!: number;
 users!: User[];
 
@@ -53,6 +52,12 @@ ngOnInit(): void {
   this.service.getCountries().pipe(takeUntil(this._unsuscribe$)).subscribe({
     next: resp => this.countries = resp
   })
+
+  this.service.getData().pipe(takeUntil(this._unsuscribe$))
+  .subscribe(users => {
+    this.users = users;
+    console.log(users);
+  });
   }
 //para que al tocar el campo y salir sin rellenarlo de error.
 invalidInput(campo: string) {
@@ -74,11 +79,14 @@ userEdited(editedUser:any){
 }
 
 update() {
-  this.service.updateData(this.registerForm.value, this.editedUserId)
-  .subscribe(editedUser => {
-    this.users = editedUser
+  this.service.updateData(this.registerForm.value, this.editedUserId).pipe(
+    switchMap(() => {
+      return this.service.getData()
+    } )
+  )
+  .subscribe(users => {
+    this.users = users
     console.log(this.users);
-    
   })
 }
 
@@ -96,7 +104,7 @@ submitData() {
   this.service.postData(this.registerForm.value)
   .subscribe(resp => {
      this.users = resp
-    console.log(this.users);
+    console.log('new user added', this.users);
   })
   //resetear valor del form 
   this.registerForm.reset();
