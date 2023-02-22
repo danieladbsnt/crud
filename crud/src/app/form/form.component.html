@@ -46,6 +46,5 @@
         <button *ngIf="editedUserId" (click)="update()" [disabled]="registerForm.invalid" type="submit" class="btn btn-primary">Actualizar</button>
     </div>
 </form>
-<app-table [userss]="users" (userEdited)="userEdited($event)"></app-table>
-
+<app-table [users]="users" (userEdited)="userEdited($event)"></app-table>
 </div>
