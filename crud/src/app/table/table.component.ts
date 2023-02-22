@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Subject } from 'rxjs';
 import { User } from '../interfaces/user';
 import { ServiceService } from '../services/service.service';
 
@@ -8,35 +8,20 @@ import { ServiceService } from '../services/service.service';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements OnInit{
-@Input() userss!: any;
+export class TableComponent {
 @Output() userEdited: EventEmitter<User> = new EventEmitter();
 
-users!: User[];
+@Input() users!: User[];
 
 private _unsuscribe$ = new Subject<boolean>();
 
   constructor(private service: ServiceService) { }
 
-  ngOnInit(): void {
-    this.service.getData().pipe(takeUntil(this._unsuscribe$))
-      .subscribe(users => {
-        this.users = users;
-        console.log(users);
-      });
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
-    console.log(this.users);
-    this.users.push(this.userss)
-  }
-
 //mandar al form el user que ha sido clickado
 update( id: number) {
   let editedUser = this.users.find((user) => user.id === id)
   this.userEdited.emit(editedUser)
+
 }
 
 delete(id: number) {
